@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0F766E">
 <title>CareHome — Home Therapy Platform, End-to-End</title>
 <meta name="description" content="Interactive walkthrough of CareHome: patient app, therapist app, therapy store and admin console.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,7 +24,7 @@ img{max-width:100%;display:block}
 button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 a{color:inherit;text-decoration:none}
 .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
-section{position:relative;padding:110px 0}
+section{position:relative;padding:110px 0;overflow-x:clip}
 .serif{font-family:'Fraunces',serif;font-weight:700;letter-spacing:-.02em}
 .gtext{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);background:var(--mint);padding:7px 14px;border-radius:99px}
@@ -186,7 +187,8 @@ nav ul a:hover{background:var(--mint);color:var(--teal)}
 .pl{display:flex;gap:16px;padding:18px 20px;background:#fff;border:1px solid var(--line);border-radius:20px}
 .pl i{flex:none;width:44px;height:44px;border-radius:14px;background:var(--mint);display:grid;place-items:center;font-style:normal;font-size:20px}
 .pl b{display:block;margin-bottom:2px}.pl span{font-size:14px;color:var(--mute)}
-@media(max-width:960px){.priv{grid-template-columns:1fr}}
+@media(max-width:960px){.priv{grid-template-columns:minmax(0,1fr)}}
+.priv>*{min-width:0}
 
 /* BOOKING TYPES */
 #booking{background:linear-gradient(180deg,var(--bg),#ecfdf9)}
@@ -354,6 +356,99 @@ svg.chart{width:100%;height:170px;overflow:visible}
 footer{background:#041f1d;color:#7fb5ad;font-size:13.5px;text-align:center;padding:30px}
 .toast{position:fixed;left:50%;bottom:30px;transform:translate(-50%,120px);background:var(--ink);color:#fff;padding:14px 24px;border-radius:99px;font-weight:600;font-size:14px;z-index:400;transition:.4s;box-shadow:0 20px 40px #0005}
 .toast.show{transform:translate(-50%,0)}
+
+/* ---------- MOBILE & TOUCH ---------- */
+html{-webkit-text-size-adjust:100%}
+body{-webkit-tap-highlight-color:transparent}
+button,a,.bk-card,.cat{touch-action:manipulation}
+.viewer>*,.conn>*{min-width:0}
+.steps,.beats{position:relative;scroll-behavior:smooth}
+.pv,.duo{touch-action:pan-y}
+.hamb{display:none;width:46px;height:46px;border-radius:14px;background:#fff;box-shadow:0 4px 14px #0f172a22;font-size:22px;place-items:center;color:var(--teal-d)}
+.mnav{display:none;position:fixed;top:72px;left:12px;right:12px;background:#fff;border-radius:22px;padding:10px;box-shadow:0 30px 60px -10px #0f172a55;gap:2px;z-index:99}
+.mnav.open{display:grid;animation:pop .3s}
+.mnav a:not(.btn){padding:15px 16px;border-radius:14px;font-weight:700;font-size:16px}
+.mnav a:not(.btn):active{background:var(--mint)}
+.mcount{display:none;text-align:center;color:#9fd8d0;font-size:13px;font-weight:700;margin-top:-10px}
+#ccount{margin-top:18px}
+.mcount .dts{display:flex;gap:6px;justify-content:center;margin-top:10px;flex-wrap:wrap}
+.mcount .dts i{width:7px;height:7px;border-radius:50%;background:#ffffff33;transition:.3s}
+.mcount .dts i.on{width:22px;border-radius:9px;background:#2dd4bf}
+.toast{bottom:calc(24px + env(safe-area-inset-bottom))}
+@media(hover:none){.hint{display:none}.eco-card:hover{transform:none;box-shadow:none;border-color:var(--line)}.eco-card:hover::before{opacity:0}.eco-card:hover>*{color:inherit}.eco-card:hover p,.eco-card:hover li{color:inherit}.eco-card:hover .eco-ico{background:var(--g)}.prod:hover,.bk-card:hover,.node:hover,.ph-c:hover{transform:none}}
+@media(max-width:1180px){
+  .mcount{display:block}
+  .viewer{gap:22px}
+  .steps{scroll-snap-type:x proximity;padding:4px 2px 10px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .steps::-webkit-scrollbar,.beats::-webkit-scrollbar{display:none}
+  .step{scroll-snap-align:center;background:#ffffff0d;padding:10px 16px 10px 10px}
+  .beats{scrollbar-width:none;padding-bottom:8px;scroll-snap-type:x proximity}
+  .beat{scroll-snap-align:center;background:#ffffff0d}
+  .info{min-height:0}
+}
+@media(max-width:960px){
+  .hamb{display:inline-grid}
+  nav .nav-cta{display:none}
+}
+@media(max-width:700px){
+  section{padding:72px 0}
+  .wrap{padding:0 20px}
+  #hero{padding:112px 0 60px}
+  .hero h1{font-size:44px}
+  .hero-btns .btn{flex:1;justify-content:center;padding:15px 18px}
+  .stats{gap:22px 30px}
+  .stat b{font-size:30px}
+  h2.title{font-size:32px}
+  .lead{font-size:16.5px}
+  .stage{height:470px}
+  .ph.c{height:440px;margin-left:-102px}
+  .chip-f{font-size:12px;padding:9px 12px}
+  .cf1{left:-6px;top:0}.cf2{right:-6px;bottom:70px}.cf3{left:0;bottom:6px}
+  /* swipe carousels */
+  .eco,.bk,.phases,.gal{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin-left:-20px;margin-right:-20px;padding:6px 20px 18px;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+  .eco::-webkit-scrollbar,.bk::-webkit-scrollbar,.phases::-webkit-scrollbar,.gal::-webkit-scrollbar{display:none}
+  .eco>*,.phases>*{flex:0 0 80%;scroll-snap-align:center}
+  .bk>*{flex:0 0 72%;scroll-snap-align:center}
+  .phases{margin-top:44px}
+  .gal>button{flex:0 0 46%;scroll-snap-align:center}
+  .eco-card .reveal,.reveal{transition-duration:.6s}
+  .seg{display:flex;width:100%;margin:26px 0 30px}
+  .seg button{flex:1 1 auto;padding:12px 10px;font-size:13px;white-space:nowrap}
+  .pv,.pv .ph{height:500px}
+  .pv::before{width:300px;height:300px}
+  .pv .ph img.r2{height:auto;width:43vw;max-height:500px}
+  .info h3{font-size:28px}
+  .ctrl button.rd{width:50px;height:50px}
+  .duo{grid-template-columns:1fr 44px 1fr}
+  .duo figure{min-width:0}
+  .duo figure img{height:auto;width:100%}
+  .sync span{display:none}
+  .conn-note{padding:16px 18px}
+  .conn-note h4{font-size:18px}
+  .tcard{padding:20px}
+  .stage-tabs{flex-wrap:nowrap;overflow-x:auto;margin-right:-20px;padding-right:20px;scrollbar-width:none}
+  .stage-tabs button{flex:none}
+  .row{padding:12px;gap:10px}.row .k{width:78px;font-size:12px}.row .v{font-size:13px}
+  .code{font-size:11.5px}
+  .bk-detail{padding:20px}
+  .shop-head{padding:14px;gap:10px}
+  .cats{padding:14px}
+  .cat{padding:12px 18px}
+  .grid{grid-template-columns:repeat(2,1fr);gap:12px;padding:6px 12px 20px}
+  .pimg{height:104px;font-size:46px}
+  .pb{padding:12px}.pb h5{font-size:13.5px}
+  .pf b{font-size:16px}.pf s{display:none}
+  .add{width:44px;height:44px}
+  .main{padding:16px}
+  .kpi{padding:14px}.kpi b{font-size:23px}
+  .panel{padding:16px}
+  .node{padding:12px 8px;font-size:12.5px}
+  .vr button{padding:10px 14px}
+  #cta{padding:80px 0}
+  .lb img{max-width:96vw;max-height:86vh}
+  .lb button{top:14px;right:18px;width:48px;height:48px}
+}
+@media(max-width:380px){.hero h1{font-size:38px}.gal>button{flex-basis:56%}.eco>*,.phases>*{flex-basis:88%}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
 </style>
 </head>
@@ -363,7 +458,9 @@ footer{background:#041f1d;color:#7fb5ad;font-size:13.5px;text-align:center;paddi
   <a href="#hero" class="logo"><svg viewBox="0 0 40 40"><defs><linearGradient id="lgo" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#14b8a6"/><stop offset="1" stop-color="#0F766E"/></linearGradient></defs><path d="M21 4c7 1 12 6 11 14-6 0-12-3-11-14z" fill="url(#lgo)"/><path d="M19 8c-6 1-10 5-9 11 5 0 10-2 9-11z" fill="#14b8a6"/><path d="M5 26c4-3 9-1 13 1l6-1c2 0 3 2 1 3l-6 3c-5 2-11 3-16-1z" fill="#0F766E"/></svg><span>Care<b>Home</b></span></a>
   <ul><li><a href="#ecosystem">Ecosystem</a></li><li><a href="#flow">Live Flow</a></li><li><a href="#privacy">Privacy</a></li><li><a href="#booking">Booking</a></li><li><a href="#store">Store</a></li><li><a href="#admin">Admin</a></li><li><a href="#roadmap">Roadmap</a></li></ul>
   <a href="#flow" class="btn btn-coral nav-cta">Explore the flow →</a>
-</div></nav>
+  <button class="hamb" id="hamb" aria-label="Menu" aria-expanded="false">☰</button>
+</div>
+<div class="mnav" id="mnav"><a href="#ecosystem">Ecosystem</a><a href="#flow">Live Flow</a><a href="#privacy">Privacy</a><a href="#booking">Booking</a><a href="#store">Store</a><a href="#admin">Admin</a><a href="#roadmap">Roadmap</a><a href="#flow" class="btn btn-coral" style="justify-content:center;margin-top:6px">Explore the flow →</a></div></nav>
 
 <!-- HERO -->
 <section id="hero" class="hero">
@@ -424,7 +521,8 @@ footer{background:#041f1d;color:#7fb5ad;font-size:13.5px;text-align:center;paddi
 
     <div class="viewer" id="viewer">
       <div class="steps" id="steps"></div>
-      <div class="pv"><div class="ph" id="phone"></div></div>
+      <div class="pv" id="pv"><div class="ph" id="phone"></div></div>
+      <div class="mcount" id="mcount"></div>
       <div class="info" id="info">
         <div class="tag" id="itag"></div><h3 class="serif" id="ititle"></h3><p id="itext"></p>
         <div class="pills" id="ipills"></div>
@@ -442,6 +540,7 @@ footer{background:#041f1d;color:#7fb5ad;font-size:13.5px;text-align:center;paddi
           <div class="sync"><div class="ev" id="cev"></div><div class="line"></div><span>real-time sync</span></div>
           <figure><img id="ct" alt=""><figcaption>Therapist app</figcaption></figure>
         </div>
+        <div class="mcount" id="ccount"></div>
         <div class="conn-note"><h4 id="cnt"></h4><p id="cnp"></p></div>
       </div>
     </div>
@@ -654,7 +753,7 @@ const C=[
 ];
 
 /* ---------- FLOW VIEWER ---------- */
-let mode='patient',idx=0,playing=true,tick=null,t0=0;const DUR=6500;
+let mode='patient',idx=0,playing=!matchMedia('(hover:none)').matches,tick=null,t0=0;const DUR=6500;
 const data=()=>mode==='patient'?P:mode==='therapist'?T:C;
 const swapImg=(el,src)=>{if(el.getAttribute('src')===src)return;el.classList.add('out');setTimeout(()=>{el.src=src;el.onload=()=>el.classList.remove('out');setTimeout(()=>el.classList.remove('out'),300)},180)};
 function renderSteps(){
@@ -663,12 +762,15 @@ function renderSteps(){
   el.innerHTML=data().map((s,i)=>`<button class="step" data-i="${i}"><span class="n">${s.n}</span><b>${s.t}</b></button>`).join('');
   $$('#steps .step').forEach(b=>b.onclick=()=>go(+b.dataset.i,true));
 }
+function centerChip(box,el){if(!el||innerWidth>1180)return;box.scrollTo({left:el.offsetLeft-box.clientWidth/2+el.offsetWidth/2,behavior:'smooth'})}
+function counter(el,n){el.innerHTML=`<span>‹ swipe the phone · ${idx+1} / ${n} ›</span><div class="dts">${Array.from({length:n},(_,i)=>`<i class="${i===idx?'on':''}"></i>`).join('')}</div>`}
 function show(){
   const d=data()[idx];
   if(mode==='connected'){
     swapImg($('#cp'),img(d.p));swapImg($('#ct'),img(d.q));
     $('#cev').textContent=d.ev;$('#cnt').textContent=d.h;$('#cnp').textContent=d.x;
     $$('#beats .beat').forEach((b,i)=>b.classList.toggle('on',i===idx));
+    centerChip($('#beats'),$('#beats .on'));counter($('#ccount'),C.length);
     return;
   }
   const ph=$('#phone');const imgs=d.i||[d.n];
@@ -680,6 +782,8 @@ function show(){
   $('#ipills').innerHTML=d.p.map(p=>`<span class="pill">${p}</span>`).join('');
   $$('#steps .step').forEach((b,i)=>{b.classList.toggle('on',i===idx);b.classList.toggle('done',i<idx)});
   const on=$('#steps .on');if(on&&innerWidth>1180)$('#steps').scrollTo({top:on.offsetTop-200,behavior:'smooth'});
+  else centerChip($('#steps'),on);
+  counter($('#mcount'),data().length);
 }
 function go(i,user){const n=data().length;idx=(i+n)%n;show();t0=performance.now();if(user&&playing){}}
 function loop(t){
@@ -694,6 +798,7 @@ $$('#modes button').forEach(b=>b.onclick=()=>{
   $('#phone').innerHTML='';renderSteps();show();t0=performance.now();
 });
 addEventListener('keydown',e=>{const r=$('#flow').getBoundingClientRect();if(r.top<innerHeight*.6&&r.bottom>innerHeight*.4&&!/INPUT/.test(document.activeElement.tagName)){if(e.key==='ArrowRight')go(idx+1,true);if(e.key==='ArrowLeft')go(idx-1,true)}});
+$('#play').textContent=playing?'⏸':'▶';
 renderSteps();show();requestAnimationFrame(t=>{t0=t;loop(t)});
 // pause autoplay while off-screen
 new IntersectionObserver(es=>{es.forEach(e=>{if(!e.isIntersecting){if(playing){$('#play').click();loop.auto=true}}else if(loop.auto){loop.auto=false;if(!playing)$('#play').click()}})},{threshold:.1}).observe($('#flow'));
@@ -797,8 +902,26 @@ $$('#vq button').forEach(b=>b.onclick=()=>{const r=$('#v'+b.dataset.i);r.classLi
 
 /* ---------- GALLERY ---------- */
 $('#gal').innerHTML=Array.from({length:20},(_,i)=>`<button data-n="${i+1}"><img loading="lazy" src="${img(i+1)}" alt="Screen ${i+1}"><span>${i+1}</span></button>`).join('');
-$$('#gal button').forEach(b=>b.onclick=()=>{$('#lbi').src=img(+b.dataset.n);$('#lb').classList.add('open')});
-$('#lb').onclick=()=>$('#lb').classList.remove('open');
+
+/* ---------- TOUCH: swipe, menu, lightbox ---------- */
+function swipe(target,mover,fn){
+  let x0=0,y0=0,dx=0,lock=null,on=false;
+  target.addEventListener('touchstart',e=>{const t=e.touches[0];x0=t.clientX;y0=t.clientY;dx=0;lock=null;on=true;mover.style.transition='none'},{passive:true});
+  target.addEventListener('touchmove',e=>{if(!on)return;const t=e.touches[0],mx=t.clientX-x0,my=t.clientY-y0;
+    if(lock===null&&(Math.abs(mx)>8||Math.abs(my)>8))lock=Math.abs(mx)>Math.abs(my)?'x':'y';
+    if(lock==='x'){dx=mx;mover.style.transform=`translateX(${dx*.45}px)`}},{passive:true});
+  const end=()=>{on=false;mover.style.transition='transform .35s cubic-bezier(.2,.8,.2,1)';mover.style.transform='';if(lock==='x'&&Math.abs(dx)>45)fn(dx<0?1:-1)};
+  target.addEventListener('touchend',end,{passive:true});target.addEventListener('touchcancel',end,{passive:true});
+}
+swipe($('#pv'),$('#phone'),d=>go(idx+d,true));
+swipe($('.duo'),$('.duo'),d=>go(idx+d,true));
+const hb=$('#hamb'),mn=$('#mnav');
+hb.onclick=()=>{const o=mn.classList.toggle('open');hb.textContent=o?'✕':'☰';hb.setAttribute('aria-expanded',o)};
+mn.querySelectorAll('a').forEach(a=>a.onclick=()=>{mn.classList.remove('open');hb.textContent='☰'});
+let lbN=1;const lbShow=n=>{lbN=((n-1+20)%20)+1;$('#lbi').src=img(lbN)};
+$$('#gal button').forEach(b=>b.onclick=()=>{lbShow(+b.dataset.n);$('#lb').classList.add('open')});
+swipe($('#lb'),$('#lbi'),d=>lbShow(lbN+d));
+$('#lb').onclick=e=>{if(e.target.tagName!=='IMG')$('#lb').classList.remove('open')};
 addEventListener('keydown',e=>{if(e.key==='Escape'){$('#lb').classList.remove('open');dr(false)}});
 </script>
 </body>
